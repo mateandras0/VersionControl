@@ -22,6 +22,7 @@ namespace IRF7
             label1.Text = Resource1.FullName;
             button1.Text = Resource1.Add;
             button2.Text = Resource1.SaveFile;
+            button3.Text = Resource1.Delete;
 
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
@@ -51,6 +52,23 @@ namespace IRF7
                     sw.Write(item.ID);
                     sw.WriteLine();
                 }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            var od = from x in users
+                     select x;
+
+            if (string.IsNullOrEmpty(listBox1.Text))
+            {
+                MessageBox.Show("Nincs törlendő elem!");
+            }
+            else
+            {
+                users.Remove(od.FirstOrDefault());
+                
             }
         }
     }
